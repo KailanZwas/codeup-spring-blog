@@ -30,7 +30,7 @@ public class PostController {
 
     @GetMapping("/posts/{id}")
     public String postId(@PathVariable long id, Model model){
-    Post post = new Post("poop", "loose messy pants");
+    Post post = new Post("poppy", " poppy seed muffins");
 
     model.addAttribute("post", post);
 //        return "view an individual post with id of " + id;
