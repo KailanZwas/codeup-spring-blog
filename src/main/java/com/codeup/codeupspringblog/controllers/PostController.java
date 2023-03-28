@@ -19,8 +19,8 @@ public class PostController {
     @GetMapping("/posts")
     public String postIndex(Model model){
         List<Post> posts = new ArrayList<>(Arrays.asList(
-                new Post("apple", "something goes here"),
-                new Post("pear", "what else can i say")
+                new Post(1,"apple", "something goes here"),
+                new Post(2,"pear", "what else can i say")
         ));
 
         model.addAttribute("posts", posts);
@@ -30,7 +30,7 @@ public class PostController {
 
     @GetMapping("/posts/{id}")
     public String postId(@PathVariable long id, Model model){
-    Post post = new Post("poppy", " poppy seed muffins");
+    Post post = new Post(1,"poppy", " poppy seed muffins");
 
     model.addAttribute("post", post);
 //        return "view an individual post with id of " + id;
