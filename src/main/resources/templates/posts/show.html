@@ -1,12 +1,20 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
+<!--<head th:replace="patrials/headMaster :: head">-->
+
+<!--    <meta charset="UTF-8">-->
     <title>show</title>
 </head>
 <body>
+<nav th:replace="partials/navbar :: navbar"></nav>
+
+
     <h1><span th:text="${post.title}"></span></h1>
     <p><span th:text="${post.body}"></span></p>
+
+
+<!--    <script th:replace="partials/script :: script"></script>-->
+    <footer th:replace="partials/footer :: footer"></footer>
 
 </body>
 </html>
