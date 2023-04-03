@@ -1,14 +1,17 @@
 package com.codeup.codeupspringblog.services;
 
+import com.codeup.codeupspringblog.model.UserWithRoles;
 import com.codeup.codeupspringblog.repositories.UserRepository;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
+import java.util.Collection;
+
 
 @Service
-public class UserDetailsLoader implements UserRepository {
+public abstract class UserDetailsLoader implements UserRepository {
     private final UserRepository users;
 
     public UserDetailsLoader(UserRepository users) {
@@ -22,6 +25,7 @@ public class UserDetailsLoader implements UserRepository {
             throw new UsernameNotFoundException("No user found for " + username);
         }
 
-        return new UserWithRoles(user);
+        return new UserWithRoles(users);
     }
+
 }

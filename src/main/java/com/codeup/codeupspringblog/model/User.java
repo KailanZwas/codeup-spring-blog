@@ -45,6 +45,13 @@ public class User {
         this.password = password;
     }
 
+    public User(User copy) {
+        id = copy.id; // This line is SUPER important! Many things won't work if it's absent
+        email = copy.email;
+        userName = copy.userName;
+        password = copy.password;
+    }
+
     public String getName() {
         return name;
     }
