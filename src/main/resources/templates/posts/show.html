@@ -9,8 +9,8 @@
 <nav th:replace="partials/navbar :: navbar"></nav>
 
 
-    <h1><span th:text="${post.title}"></span></h1>
-    <p><span th:text="${post.body}"></span></p>
+    <h1><span th:text="${post.get().title}"></span></h1>
+    <p><span th:text="${post.get().body}"></span></p>
 
 
 <!--    <script th:replace="partials/script :: script"></script>-->

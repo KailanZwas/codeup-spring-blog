@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>create Post</title>
+</head>
+<body>
+<h1>Create Post</h1>
+<form th:action="@{/posts/create}" th:method="POST" th:object="${posts}">
+    Title:
+    <input th:field="*{title}" />
+    <br>
+    Description:
+    <input th:field="*{body}" />
+    <br>
+    User Id:
+    <input th:field="*{id}" />
+
+    <input type="submit" />
+    </form>
+<!--<label for="title">Title</label>-->
+<!--    <br>-->
+<!--<input name="title" type="text" id="title">-->
+<!--<label for="body">Body</label>-->
+<!--  <textarea name="body" type="text" id="body" placeholder="input text"></textarea>-->
+<!--  <label for="tags">Enter a list of tags seperated by commas:</label>-->
+<!--   <input type="text" name="tags" id="tags">-->
+<!--    <button>Create Post</button>-->
+
+</form>
+
+</body>
+</html>
