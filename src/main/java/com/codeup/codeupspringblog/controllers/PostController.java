@@ -34,10 +34,6 @@ public class PostController {
 
     @GetMapping("/posts")
     public String postIndex(Model model) {
-//        List<Post> posts = new ArrayList<>(Arrays.asList(
-//                new Post(1,"apple", "something goes here"),
-//                new Post(2,"pear", "what else can i say")
-//        ));
         List<Post> posts = postDao.findAll();
 
         model.addAttribute("posts", posts);
@@ -55,7 +51,31 @@ public class PostController {
     }
 
 
+    @GetMapping("/posts/create")
+    public String showCreateForm(Model model) {
+        model.addAttribute("posts", new Post());
+        return "posts/create";
+    }
 
+
+    @PostMapping("/posts/create")
+    public String createPost(@ModelAttribute Post post, @RequestParam long id) {
+        User user = userDao.findById(id);
+    Post newpost = new Post(post.getTitle(),post.getBody(), user);
+    emailService.prepareAndSend(newpost);
+    postDao.save(newpost);
+        // save the ad...
+        // redirect  to the index with all the ads
+        return ("redirect:/posts");
+    }
+
+    @GetMapping("/posts/edit")
+    @ResponseBody
+    public String editpost(){
+        return("redirect:/post");
+    }
+
+    ////// Tags
 
 //    @PostMapping("/posts")
 
@@ -89,38 +109,5 @@ public class PostController {
 //    public String returnPostCreateNew() {
 //        return "posts/create";
 //    }
-
-
-
-
-
-
-// model binding
-
-    @GetMapping("/posts/create")
-    public String showCreateForm(Model model) {
-        model.addAttribute("posts", new Post());
-        return "posts/create";
-    }
-
-
-    @PostMapping("/posts/create")
-    public String createPost(@ModelAttribute Post post, @RequestParam long id) {
-        User user = userDao.findById(id);
-    Post newpost = new Post(post.getTitle(),post.getBody(), user);
-    emailService.prepareAndSend(newpost);
-    postDao.save(newpost);
-        // save the ad...
-        // redirect  to the index with all the ads
-        return ("redirect:/posts");
-    }
-
-//    @GetMapping("/posts/register")
-//    public String createUser(){
-//        emailService.prepareAndSend();
-//        return ("/posts/register");
-//    }
-
-
 
 }

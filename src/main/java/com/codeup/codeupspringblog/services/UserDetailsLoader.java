@@ -1,31 +1,29 @@
 package com.codeup.codeupspringblog.services;
 
+import com.codeup.codeupspringblog.model.User;
 import com.codeup.codeupspringblog.model.UserWithRoles;
 import com.codeup.codeupspringblog.repositories.UserRepository;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import java.util.Collection;
-
-
 @Service
-public abstract class UserDetailsLoader implements UserRepository {
-    private final UserRepository users;
+public class UserDetailsLoader implements UserDetailsService {
+    private  final UserRepository userDao;
 
-    public UserDetailsLoader(UserRepository users) {
-        this.users = users;
-    }
-
-    @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        User user = users.findByUsername(username);
-        if (user == null) {
-            throw new UsernameNotFoundException("No user found for " + username);
+        public UserDetailsLoader(UserRepository userDao) {
+            this.userDao = userDao;
         }
 
-        return new UserWithRoles(users);
+    @Override
+    public UserDetails loadUserByUsername(String userName) throws UsernameNotFoundException {
+        User user = userDao.findByUserName(userName);
+        if (user == null) {
+            throw new UsernameNotFoundException("No user found for " + userName);
+        }
+
+        return new UserWithRoles(user);
     }
 
 }

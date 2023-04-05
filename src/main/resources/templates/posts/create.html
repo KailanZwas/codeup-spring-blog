@@ -5,6 +5,7 @@
     <title>create Post</title>
 </head>
 <body>
+<nav th:replace="partials/navbar :: navbar"></nav>
 <h1>Create Post</h1>
 <form th:action="@{/posts/create}" th:method="POST" th:object="${posts}">
     Title:

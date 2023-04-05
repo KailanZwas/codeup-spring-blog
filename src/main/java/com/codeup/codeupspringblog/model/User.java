@@ -13,9 +13,7 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column(nullable = false, length = 15)
-//    @Pattern(regxp = "^[a-zA-Z]+$", message ="name should contain only alphabet characters")
-    private String name;
+
     @Column(nullable = false, length = 50)
     private String userName;
     @Column(nullable = false, length = 60)
@@ -30,16 +28,14 @@ public class User {
     }
 
 
-    public User(Long id, String name, String userName, String email, String password) {
+    public User(Long id, String userName, String email, String password) {
         this.id = id;
-        this.name = name;
         this.userName = userName;
         this.email = email;
         this.password = password;
     }
 
-    public User(String name, String userName, String email, String password) {
-        this.name = name;
+    public User(String userName, String email, String password) {
         this.userName = userName;
         this.email = email;
         this.password = password;
@@ -50,14 +46,6 @@ public class User {
         email = copy.email;
         userName = copy.userName;
         password = copy.password;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public String getUserName() {

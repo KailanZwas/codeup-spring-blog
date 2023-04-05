@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
-public class AboutConterooler {
+public class AboutController {
 
     @GetMapping("/about")
     public String aboutPage(@RequestParam int num){

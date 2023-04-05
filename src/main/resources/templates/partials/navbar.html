@@ -3,5 +3,10 @@
 <ul>
   <li><a href="#">home</a></li>
     <li><a href="#">About</a></li>
+  <li>
+    <form th:action="@{/logout}" th:method="post">
+      <button class="btn-link btn" style="margin-top: 8px">Logout</button>
+    </form>
+  </li>
 </ul>
 </nav>
